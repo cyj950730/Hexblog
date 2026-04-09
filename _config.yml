@@ -13,8 +13,8 @@ timezone: Asia/Shanghai
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://cyj950730.github.io
-root: /
+url: https://cyj950730.github.io/Hexblog
+root: /Hexblog/
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -103,5 +103,5 @@ theme: stellar
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repo: https://github.com/cyj950730/cyj950730.github.io.git
+  repo: https://github.com/cyj950730/Hexblog.git
   branch: gh-pages
