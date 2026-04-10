@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
   
-  <meta name="robots" content="noindex,follow">
+  
   <meta name="generator" content="Hexo 8.1.1">
   <meta http-equiv='x-dns-prefetch-control' content='on' />
   
@@ -17,22 +17,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>分类：生活 - BugHunter</title>
+  <title>AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目 - BugHunter</title>
 
   
-    <meta name="description" content="这里记录 BugHunter 的开发笔记、问题排查和折腾心得。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BugHunter">
-<meta property="og:url" content="https://cyj950730.github.io/Hexblog/categories/%E7%94%9F%E6%B4%BB/">
+    <meta name="description" content="很多人用 AI 写代码，还停留在“提一个需求，等一段代码”的阶段。 这种方式当然有帮助，但它更像是把 AI 当成一个更聪明的搜索框，而不是一个真正能进入项目流程的协作伙伴。 如果你最近开始接触 Claude Code、Cursor、Codex 这类 AI 编程工具，你大概率会反复遇到五个关键词：  Rules Commands Subagent MCP Skills  它们看起来像是不同工具里的零">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目">
+<meta property="og:url" content="https://cyj950730.github.io/Hexblog/2026/04/10/ai-coding-five-piece/">
 <meta property="og:site_name" content="BugHunter">
-<meta property="og:description" content="这里记录 BugHunter 的开发笔记、问题排查和折腾心得。">
+<meta property="og:description" content="很多人用 AI 写代码，还停留在“提一个需求，等一段代码”的阶段。 这种方式当然有帮助，但它更像是把 AI 当成一个更聪明的搜索框，而不是一个真正能进入项目流程的协作伙伴。 如果你最近开始接触 Claude Code、Cursor、Codex 这类 AI 编程工具，你大概率会反复遇到五个关键词：  Rules Commands Subagent MCP Skills  它们看起来像是不同工具里的零">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-04-10T04:20:00.000Z">
+<meta property="article:modified_time" content="2026-04-10T03:52:51.141Z">
 <meta property="article:author" content="BugHunter">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="MCP">
+<meta property="article:tag" content="工作流">
+<meta property="article:tag" content="编程效率">
 <meta name="twitter:card" content="summary">
   
   
   
-  
+  <meta name="keywords" content="AI,编程效率,工作流,MCP">
 
   <!-- feed -->
   
@@ -44,10 +50,10 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Website","@id":"https://cyj950730.github.io/Hexblog","author":{"@type":"Person","name":"BugHunter","sameAs":[]},"name":"BugHunter","description":"这里记录 BugHunter 的开发笔记、问题排查和折腾心得。","url":"https://cyj950730.github.io/Hexblog"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BugHunter","sameAs":[]},"dateCreated":"2026-04-10T12:20:00+08:00","dateModified":"2026-04-10T11:52:51+08:00","datePublished":"2026-04-10T12:20:00+08:00","description":"","headline":"AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目","mainEntityOfPage":{"@type":"WebPage","@id":"https://cyj950730.github.io/Hexblog/2026/04/10/ai-coding-five-piece/"},"publisher":{"@type":"Organization","name":"BugHunter","sameAs":[]},"url":"https://cyj950730.github.io/Hexblog/2026/04/10/ai-coding-five-piece/","keywords":"AI, 编程效率, 工作流, MCP","image":[]}</script>
   
 </head>
-<body><div id="l_cover"></div><div class="l_body index" id="start" layout="undefined" type="undefined" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+<body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
 
 
 <header class="header"><div class="logo-wrap"><a class="avatar" href="/Hexblog/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined"></a><a class="title" href="/"><div class="main">BugHunter</div><div class="sub cap">代码猎手的技术博客</div></a></div></header>
@@ -59,32 +65,366 @@
 <div class="widgets">
 <div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
 
+
+
 <widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/Hexblog/2026/04/10/ai-coding-five-piece/"><span class="title">AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目</span></a><a class="item title" href="/Hexblog/2026/04/09/hello-world/"><span class="title">前端开发如何用好 AI Skill</span></a><a class="item title" href="/Hexblog/2025/11/15/welcome/"><span class="title">欢迎来到我的博客</span></a></div></widget>
 </div>
 
 </div></aside><div class="l_main" id="main">
 
-<header class="header mobile-only"><div class="logo-wrap"><a class="avatar" href="/Hexblog/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined"></a><a class="title" href="/"><div class="main">BugHunter</div><div class="sub cap">代码猎手的技术博客</div></a></div></header>
-
- 
 
 
 
 
-<div class="navbar top"><div class="navbar-blur"><div class="navbar-container"><nav class="post"><a href="/Hexblog/">近期发布</a><a class="active" href="/Hexblog/categories/">分类：生活</a><a href="/Hexblog/tags/">标签</a><a href="/Hexblog/archives/">归档</a></nav></div></div></div>
-<div class="post-list post"><div class="post-card-wrap"><a class="post-card post" href="/Hexblog/2025/11/15/welcome/">
-<article class="md-text"><h2 class="post-title">欢迎来到我的博客</h2><div class="excerpt"><p>欢迎来到我的博客！这是我的第一篇博客文章，使用 Hexo 和 Amazing 主题搭建。
-关于这个博客这个博客将用来分享：
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/Hexblog/Hexblog/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/Hexblog/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/Hexblog/categories/AI%E5%BC%80%E5%8F%91/">AI开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-04-10T04:20:00.000Z">2026-04-10</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-04-10T03:52:51.141Z">2026-04-10</time></span></div></div></div>
+    
+    <div class="bottom only-title">
+      
+      <div class="text-area">
+        <h1 class="text title"><span>AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目</span></h1>
+        
+      </div>
+    </div>
+    
+  </div>
+  </div><article class="md-text content"><p>很多人用 AI 写代码，还停留在“提一个需求，等一段代码”的阶段。</p>
+<p>这种方式当然有帮助，但它更像是把 AI 当成一个更聪明的搜索框，而不是一个真正能进入项目流程的协作伙伴。</p>
+<p>如果你最近开始接触 <code>Claude Code</code>、<code>Cursor</code>、<code>Codex</code> 这类 AI 编程工具，你大概率会反复遇到五个关键词：</p>
+<ul>
+<li><code>Rules</code></li>
+<li><code>Commands</code></li>
+<li><code>Subagent</code></li>
+<li><code>MCP</code></li>
+<li><code>Skills</code></li>
+</ul>
+<p>它们看起来像是不同工具里的零散概念，实际上可以把它们理解成一整套逐步升级的 AI 开发工作流：</p>
+<ul>
+<li><code>Rules</code> 负责统一规范</li>
+<li><code>Commands</code> 负责复用流程</li>
+<li><code>Subagent</code> 负责分工协作</li>
+<li><code>MCP</code> 负责连接外部能力</li>
+<li><code>Skills</code> 负责沉淀可复用经验</li>
+</ul>
+<p>这篇文章不只是解释名词，而是想回答一个更实际的问题：</p>
+<p><code>这五件事，为什么值得配？又该按什么顺序落到自己的项目里？</code></p>
+<h2 id="1-为什么现在要重新理解-AI-编程"><a href="#1-为什么现在要重新理解-AI-编程" class="headerlink" title="1. 为什么现在要重新理解 AI 编程"></a>1. 为什么现在要重新理解 AI 编程</h2><p>过去我们和 AI 的关系，大多是“一问一答”：</p>
+<ul>
+<li>帮我写个函数</li>
+<li>帮我改个报错</li>
+<li>帮我补几条测试</li>
+<li>帮我解释这段代码</li>
+</ul>
+<p>这类使用方式没有问题，但它的上限也比较明显：</p>
+<ul>
+<li>输出质量依赖当次提示词</li>
+<li>每次都要重新交代项目背景</li>
+<li>很难形成稳定的团队协作规范</li>
+<li>会话一换，AI 就像“失忆”了一样</li>
+</ul>
+<p>而现在更成熟的用法，是把 AI 放进项目上下文里，让它不只是“回答问题”，而是能稳定参与日常开发。</p>
+<p>也就是说，我们希望 AI 从一个聊天窗口，变成一条可复用的开发流水线。</p>
+<p>这时候，<code>Rules</code>、<code>Commands</code>、<code>Subagent</code>、<code>MCP</code> 和 <code>Skills</code> 就不是加分项了，而是搭建这条流水线的基础模块。</p>
+<h2 id="2-Rules：先把“项目规矩”写清楚"><a href="#2-Rules：先把“项目规矩”写清楚" class="headerlink" title="2. Rules：先把“项目规矩”写清楚"></a>2. Rules：先把“项目规矩”写清楚</h2><p>先说最容易被低估的一件事：<code>Rules</code>。</p>
+<h3 id="2-1-Rules-是什么"><a href="#2-1-Rules-是什么" class="headerlink" title="2.1 Rules 是什么"></a>2.1 Rules 是什么</h3><p>你可以把 <code>Rules</code> 理解成 AI 在当前项目里的“长期行为约束”。</p>
+<p>比如这些话，很多人其实每天都在重复：</p>
+<ul>
+<li>请用 <code>TypeScript</code></li>
+<li>不要直接改动老接口字段</li>
+<li>组件优先拆小，保持单一职责</li>
+<li>Promise 记得处理异常</li>
+<li>提交代码前先跑测试</li>
+</ul>
+<p>这些并不是临时要求，而是团队共识。</p>
+<p>如果你每次都靠聊天重新说一遍，AI 的输出就会非常依赖当前会话；但如果你把这些内容写成规则文件，AI 从一开始就会按照同一套标准工作。</p>
+<h3 id="2-2-Rules-最直接的价值"><a href="#2-2-Rules-最直接的价值" class="headerlink" title="2.2 Rules 最直接的价值"></a>2.2 Rules 最直接的价值</h3><p><code>Rules</code> 真正解决的，不是“AI 会不会写代码”，而是“AI 写出来的东西稳不稳定”。</p>
+<p>它通常能带来三件事：</p>
+<ol>
+<li><p>减少重复沟通<br>你不用每次都重新强调技术栈、风格和边界。</p>
+</li>
+<li><p>提高输出一致性<br>同一个项目里，AI 不会一会儿偏函数式，一会儿又写回命令式。</p>
+</li>
+<li><p>让协作更可持续<br>即使换会话、换模型、换使用者，AI 的行为也更容易保持统一。</p>
+</li>
+</ol>
+<h3 id="2-3-一份更实用的-Rules-示例"><a href="#2-3-一份更实用的-Rules-示例" class="headerlink" title="2.3 一份更实用的 Rules 示例"></a>2.3 一份更实用的 Rules 示例</h3><p>下面是一份适合前端或 Node 项目的简化示例：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">description: Project coding rules</span><br><span class="line"><span class="section">always<span class="emphasis">_apply: true</span></span></span><br><span class="line"><span class="emphasis"><span class="section">---</span></span></span><br><span class="line"><span class="emphasis"><span class="section"></span></span></span><br><span class="line"><span class="emphasis"><span class="section"># Stack</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Use TypeScript for all new code</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Prefer framework-native patterns before introducing new libraries</span></span></span><br><span class="line"><span class="emphasis"><span class="section"></span></span></span><br><span class="line"><span class="emphasis"><span class="section"># Code Style</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Keep functions small and focused</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Use descriptive variable names</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Avoid unnecessary comments</span></span></span><br><span class="line"><span class="emphasis"><span class="section"></span></span></span><br><span class="line"><span class="emphasis"><span class="section"># Safety</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Do not change public API contracts unless explicitly requested</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Handle async errors explicitly</span></span></span><br><span class="line"><span class="emphasis"><span class="section"></span></span></span><br><span class="line"><span class="emphasis"><span class="section"># Delivery</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Run relevant tests before finishing</span></span></span><br><span class="line"><span class="emphasis"><span class="section">- Explain important tradeoffs in plain language</span></span></span><br></pre></td></tr></table></figure>
 
-💻 技术文章 - 编程经验和技术总结
-📚 学习笔记 - 学习过程中的心得体会  
-🌟 生活感悟 - 日常生活中的思考和...</p></div><div class="meta cap"><span class="cap" id="post-meta"><svg style="margin-bottom:2px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6.94 2c.416 0 .753.324.753.724v1.46c.668-.012 1.417-.012 2.26-.012h4.015c.842 0 1.591 0 2.259.013v-1.46c0-.4.337-.725.753-.725s.753.324.753.724V4.25c1.445.111 2.394.384 3.09 1.055c.698.67.982 1.582 1.097 2.972L22 9H2v-.724c.116-1.39.4-2.302 1.097-2.972c.697-.67 1.645-.944 3.09-1.055V2.724c0-.4.337-.724.753-.724"/><path fill="currentColor" d="M22 14v-2c0-.839-.004-2.335-.017-3H2.01c-.013.665-.01 2.161-.01 3v2c0 3.771 0 5.657 1.172 6.828C4.343 22 6.228 22 10 22h4c3.77 0 5.656 0 6.828-1.172C22 19.658 22 17.772 22 14" opacity=".5"/><path fill="currentColor" d="M18 17a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m-5 4a1 1 0 1 1-2 0a1 1 0 0 1 2 0m0-4a1 1 0 1 1-2 0a1 1 0 0 1 2 0"/></svg><time datetime="2025-11-15T07:25:00.000Z">2025-11-15</time></span><span class="cap breadcrumb"><svg style="margin-bottom:1px" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M2 6.95c0-.883 0-1.324.07-1.692A4 4 0 0 1 5.257 2.07C5.626 2 6.068 2 6.95 2c.386 0 .58 0 .766.017a4 4 0 0 1 2.18.904c.144.119.28.255.554.529L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .848.352C14.098 6 14.675 6 15.828 6h.374c2.632 0 3.949 0 4.804.77c.079.07.154.145.224.224c.77.855.77 2.172.77 4.804V14c0 3.771 0 5.657-1.172 6.828C19.657 22 17.771 22 14 22h-4c-3.771 0-5.657 0-6.828-1.172C2 19.657 2 17.771 2 14z" opacity=".5"/><path fill="currentColor" d="M20 6.238c0-.298-.005-.475-.025-.63a3 3 0 0 0-2.583-2.582C17.197 3 16.965 3 16.5 3H9.988c.116.104.247.234.462.45L11 4c.816.816 1.224 1.224 1.712 1.495a4 4 0 0 0 .849.352C14.098 6 14.675 6 15.829 6h.373c1.78 0 2.957 0 3.798.238"/><path fill="currentColor" fill-rule="evenodd" d="M12.25 10a.75.75 0 0 1 .75-.75h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75" clip-rule="evenodd"/></svg><span>生活</span></span></div></article>
-</a></div></div>
+<p>这类规则文件不需要写得很长，但一定要写“长期有效”的内容。</p>
+<p>一个很实用的判断标准是：</p>
+<p><code>凡是你会在 3 次以上的对话里重复强调的东西，都值得进入 Rules。</code></p>
+<h2 id="3-Commands：把高频动作压缩成一个入口"><a href="#3-Commands：把高频动作压缩成一个入口" class="headerlink" title="3. Commands：把高频动作压缩成一个入口"></a>3. Commands：把高频动作压缩成一个入口</h2><p>如果说 <code>Rules</code> 是“项目宪法”，那 <code>Commands</code> 更像是“常用动作快捷键”。</p>
+<h3 id="3-1-Commands-解决了什么问题"><a href="#3-1-Commands-解决了什么问题" class="headerlink" title="3.1 Commands 解决了什么问题"></a>3.1 Commands 解决了什么问题</h3><p>很多开发动作，本质上并不复杂，但非常重复：</p>
+<ul>
+<li>给某个模块补测试</li>
+<li>做一次基础 code review</li>
+<li>生成 commit message</li>
+<li>检查一个目录的潜在风险</li>
+<li>帮当前改动补文档</li>
+</ul>
+<p>如果每次都重新组织一段长提示词，其实很浪费。</p>
+<p><code>Commands</code> 的价值在于：把一段固定流程，变成一个可重复调用的命令入口。</p>
+<h3 id="3-2-Commands-适合沉淀哪些场景"><a href="#3-2-Commands-适合沉淀哪些场景" class="headerlink" title="3.2 Commands 适合沉淀哪些场景"></a>3.2 Commands 适合沉淀哪些场景</h3><p>我更推荐优先沉淀下面几类命令：</p>
+<ul>
+<li><code>review</code>：对当前改动做风险检查</li>
+<li><code>test</code>：为指定文件补测试</li>
+<li><code>commit</code>：生成更清晰的提交说明</li>
+<li><code>refactor</code>：按既定约束重构某个模块</li>
+<li><code>docs</code>：根据代码变更更新说明文档</li>
+</ul>
+<p>这类命令的共同点是：</p>
+<ul>
+<li>流程稳定</li>
+<li>输入形式固定</li>
+<li>很适合重复复用</li>
+</ul>
+<h3 id="3-3-Commands-为什么很适合团队使用"><a href="#3-3-Commands-为什么很适合团队使用" class="headerlink" title="3.3 Commands 为什么很适合团队使用"></a>3.3 Commands 为什么很适合团队使用</h3><p>单人开发用 <code>Commands</code>，是为了提速。</p>
+<p>团队开发用 <code>Commands</code>，意义更大：它可以把经验固化成统一入口。</p>
+<p>比如新同事不一定知道“你们团队怎么做 review”，但如果项目里已经有约定好的命令，那么他只需要调用它，就能走上比较正确的路径。</p>
+<p>所以从协作角度看，<code>Commands</code> 不是“偷懒工具”，而是“流程模板化”。</p>
+<h2 id="4-Subagent：让多个-AI-各干各的"><a href="#4-Subagent：让多个-AI-各干各的" class="headerlink" title="4. Subagent：让多个 AI 各干各的"></a>4. Subagent：让多个 AI 各干各的</h2><p>接下来是很多人觉得很酷、但也最容易误解的部分：<code>Subagent</code>。</p>
+<h3 id="4-1-Subagent-到底是什么"><a href="#4-1-Subagent-到底是什么" class="headerlink" title="4.1 Subagent 到底是什么"></a>4.1 Subagent 到底是什么</h3><p>你可以把 <code>Subagent</code> 理解成“带明确角色分工的 AI 小组”。</p>
+<p>现实开发里，我们很少指望一个人同时把这些事情都做到最好：</p>
+<ul>
+<li>看架构</li>
+<li>查安全</li>
+<li>补文档</li>
+<li>做性能分析</li>
+<li>验证测试覆盖</li>
+</ul>
+<p>AI 也一样。</p>
+<p>当任务复杂到包含多个不同关注点时，比起让一个大模型在同一上下文里全包，很多时候更好的办法，是让多个子代理分别负责不同方向。</p>
+<h3 id="4-2-什么场景适合用-Subagent"><a href="#4-2-什么场景适合用-Subagent" class="headerlink" title="4.2 什么场景适合用 Subagent"></a>4.2 什么场景适合用 Subagent</h3><p>下面这些任务，很适合交给不同子代理拆开做：</p>
+<ul>
+<li>一个代理专看安全风险</li>
+<li>一个代理专看可维护性和结构</li>
+<li>一个代理专门整理变更说明</li>
+<li>一个代理专门做测试缺口分析</li>
+</ul>
+<p>尤其是在大一些的代码库里，<code>Subagent</code> 很适合处理以下问题：</p>
+<ul>
+<li>同一任务需要多个专业视角</li>
+<li>分析范围太大，一个上下文装不下</li>
+<li>有些工作可以并行展开，节省时间</li>
+</ul>
+<h3 id="4-3-使用-Subagent-的核心原则"><a href="#4-3-使用-Subagent-的核心原则" class="headerlink" title="4.3 使用 Subagent 的核心原则"></a>4.3 使用 Subagent 的核心原则</h3><p><code>Subagent</code> 并不是越多越好。</p>
+<p>真正有用的做法通常只有两条：</p>
+<ol>
+<li><p>按角色拆，不按热闹拆<br>一个代理负责一个清晰目标，别让它职责混乱。</p>
+</li>
+<li><p>先拆并行任务，再拆串行任务<br>能同时做的先并行，必须依赖前一个结果的再串起来。</p>
+</li>
+</ol>
+<p>很多人第一次用 <code>Subagent</code> 的问题，不是不会配，而是拆分粒度不对。</p>
+<p>如果任务本身很小，强行上多代理只会增加沟通成本；但如果任务跨越安全、架构、测试、文档多个维度，<code>Subagent</code> 就会非常顺手。</p>
+<h2 id="5-MCP：让-AI-不只会“想”，还能安全地“接”"><a href="#5-MCP：让-AI-不只会“想”，还能安全地“接”" class="headerlink" title="5. MCP：让 AI 不只会“想”，还能安全地“接”"></a>5. MCP：让 AI 不只会“想”，还能安全地“接”</h2><p>聊到这里，问题自然来了：</p>
+<p>AI 光会分析还不够，它怎么访问文件、仓库、数据库、接口和外部工具？</p>
+<p>这就是 <code>MCP</code> 的价值。</p>
+<h3 id="5-1-MCP-可以理解成什么"><a href="#5-1-MCP-可以理解成什么" class="headerlink" title="5.1 MCP 可以理解成什么"></a>5.1 MCP 可以理解成什么</h3><p><code>MCP</code> 全称是 <code>Model Context Protocol</code>。</p>
+<p>如果用一句更容易记住的话来解释，我会把它理解成：</p>
+<p><code>MCP 是 AI 连接外部工具和数据源的统一接口协议。</code></p>
+<p>过去，不同 AI 工具连接文件系统、GitHub、数据库、浏览器自动化时，往往都有自己的一套实现方式。</p>
+<p>这会带来几个问题：</p>
+<ul>
+<li>每换一个工具都要重新配置</li>
+<li>集成方式不统一</li>
+<li>外部能力难以复用</li>
+<li>生态彼此割裂</li>
+</ul>
+<p><code>MCP</code> 的意义就在于，把这些连接能力做成标准化接口。</p>
+<h3 id="5-2-MCP-典型能做什么"><a href="#5-2-MCP-典型能做什么" class="headerlink" title="5.2 MCP 典型能做什么"></a>5.2 MCP 典型能做什么</h3><p>常见的 <code>MCP</code> 服务大概包括：</p>
+<ul>
+<li>文件系统访问</li>
+<li>GitHub 仓库操作</li>
+<li>数据库查询</li>
+<li>浏览器自动化</li>
+<li>第三方 API 调用</li>
+</ul>
+<p>有了这层协议，AI 就不只是“根据你贴过来的代码回答问题”，而是可以在授权范围内直接拿到一手上下文。</p>
+<h3 id="5-3-理解-MCP-时最重要的一点"><a href="#5-3-理解-MCP-时最重要的一点" class="headerlink" title="5.3 理解 MCP 时最重要的一点"></a>5.3 理解 MCP 时最重要的一点</h3><p>很多人第一次接触 <code>MCP</code>，会把重点放在“能接多少服务”。</p>
+<p>但更重要的其实是：</p>
+<p><code>MCP 不是为了让 AI 无限扩权，而是为了让 AI 能以更标准、更安全、可审计的方式接触外部能力。</code></p>
+<p>所以在项目里引入 <code>MCP</code> 时，建议优先接以下两类能力：</p>
+<ul>
+<li>能明显减少复制粘贴的</li>
+<li>边界清楚、授权可控的</li>
+</ul>
+<p>先从小而明确的连接开始，比一上来把所有系统都挂进去更稳。</p>
+<h2 id="6-Skills：把一次经验沉淀成下次还能复用的能力"><a href="#6-Skills：把一次经验沉淀成下次还能复用的能力" class="headerlink" title="6. Skills：把一次经验沉淀成下次还能复用的能力"></a>6. Skills：把一次经验沉淀成下次还能复用的能力</h2><p>如果说 <code>MCP</code> 更像“外部连接器”，那 <code>Skills</code> 更像“方法论插件”。</p>
+<h3 id="6-1-Skills-和-MCP-的区别"><a href="#6-1-Skills-和-MCP-的区别" class="headerlink" title="6.1 Skills 和 MCP 的区别"></a>6.1 Skills 和 MCP 的区别</h3><p>这两个概念经常被混在一起，但它们解决的问题其实不同：</p>
+<ul>
+<li><code>MCP</code> 关注的是“AI 能接到什么”</li>
+<li><code>Skills</code> 关注的是“AI 接到之后怎么做得更好”</li>
+</ul>
+<p>也可以简单理解成：</p>
+<ul>
+<li><code>MCP</code> 提供能力入口</li>
+<li><code>Skills</code> 提供执行套路</li>
+</ul>
+<p>比如：</p>
+<ul>
+<li>你通过 <code>MCP</code> 让 AI 访问代码仓库</li>
+<li>再通过 <code>Skills</code> 告诉它“如何做一次像样的安全审计”或“如何在 Vue 项目里按既定规范改代码”</li>
+</ul>
+<h3 id="6-2-什么样的内容适合做成-Skill"><a href="#6-2-什么样的内容适合做成-Skill" class="headerlink" title="6.2 什么样的内容适合做成 Skill"></a>6.2 什么样的内容适合做成 Skill</h3><p>当一件事同时满足下面两个条件时，就很值得沉淀成 <code>Skill</code>：</p>
+<ul>
+<li>它会被反复用到</li>
+<li>它有明确的方法和标准</li>
+</ul>
+<p>例如：</p>
+<ul>
+<li>前端组件重构规范</li>
+<li>测试补全工作流</li>
+<li>技术文档生成模板</li>
+<li>SEO 文章润色流程</li>
+<li>发布前检查清单</li>
+</ul>
+<p>这类内容一旦写成 <code>Skill</code>，AI 就不只是“听懂你的话”，而是“知道这件事应该怎么做才算合格”。</p>
+<h3 id="6-3-Skills-最适合沉淀团队经验"><a href="#6-3-Skills-最适合沉淀团队经验" class="headerlink" title="6.3 Skills 最适合沉淀团队经验"></a>6.3 Skills 最适合沉淀团队经验</h3><p>我自己很看重 <code>Skills</code> 的一个原因是：</p>
+<p>它特别适合把“资深同学脑子里的隐性经验”转成团队可复用的能力。</p>
+<p>很多项目的问题，从来不是没人会做，而是会做的人太少、经验传不下来。</p>
+<p><code>Skills</code> 正好能补这一层：</p>
+<ul>
+<li>把经验写出来</li>
+<li>把步骤固定下来</li>
+<li>让 AI 帮你稳定执行</li>
+</ul>
+<p>这比单纯收藏一堆提示词更有长期价值。</p>
+<h2 id="7-这五件套之间，应该怎么理解关系"><a href="#7-这五件套之间，应该怎么理解关系" class="headerlink" title="7. 这五件套之间，应该怎么理解关系"></a>7. 这五件套之间，应该怎么理解关系</h2><p>如果把它们放在同一个视角里看，会更清楚：</p>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>解决的问题</th>
+<th>更像什么</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Rules</code></td>
+<td>AI 应该遵守什么规范</td>
+<td>项目宪法</td>
+</tr>
+<tr>
+<td><code>Commands</code></td>
+<td>高频流程怎么快速复用</td>
+<td>快捷入口</td>
+</tr>
+<tr>
+<td><code>Subagent</code></td>
+<td>复杂任务怎么分工协作</td>
+<td>专家小组</td>
+</tr>
+<tr>
+<td><code>MCP</code></td>
+<td>AI 怎么连接外部系统</td>
+<td>标准接口</td>
+</tr>
+<tr>
+<td><code>Skills</code></td>
+<td>经验如何沉淀成能力</td>
+<td>方法论插件</td>
+</tr>
+</tbody></table>
+<p>它们并不是彼此替代，而是从不同层面把 AI 编程这件事做得更稳。</p>
+<p>一个比较顺手的理解方式是：</p>
+<ul>
+<li><code>Rules</code> 定边界</li>
+<li><code>Commands</code> 提效率</li>
+<li><code>Subagent</code> 做拆分</li>
+<li><code>MCP</code> 接能力</li>
+<li><code>Skills</code> 沉淀经验</li>
+</ul>
+<p>这五层一起工作时，AI 才更像一个真正进入项目流程的协作系统。</p>
+<h2 id="8-如果你现在就想开始，最推荐的落地顺序"><a href="#8-如果你现在就想开始，最推荐的落地顺序" class="headerlink" title="8. 如果你现在就想开始，最推荐的落地顺序"></a>8. 如果你现在就想开始，最推荐的落地顺序</h2><p>很多人看到这里会有点兴奋，然后马上想把五件套一次配齐。</p>
+<p>我真心建议别这样。</p>
+<p>更稳的方式，是按下面这个顺序逐步落地。</p>
+<h3 id="8-1-第一步：先补-Rules"><a href="#8-1-第一步：先补-Rules" class="headerlink" title="8.1 第一步：先补 Rules"></a>8.1 第一步：先补 Rules</h3><p>这是投入最小、收益最稳的一步。</p>
+<p>你不需要追求完美，只需要先写出：</p>
+<ul>
+<li>技术栈约束</li>
+<li>代码风格偏好</li>
+<li>不能碰的边界</li>
+<li>提交前的基本要求</li>
+</ul>
+<p>只要这一步做了，AI 输出的稳定性通常就会立刻改善。</p>
+<h3 id="8-2-第二步：挑-2-到-3-个高频场景做-Commands"><a href="#8-2-第二步：挑-2-到-3-个高频场景做-Commands" class="headerlink" title="8.2 第二步：挑 2 到 3 个高频场景做 Commands"></a>8.2 第二步：挑 2 到 3 个高频场景做 Commands</h3><p>别一下子做十几个命令。</p>
+<p>先从你最常重复的动作里挑几个，例如：</p>
+<ul>
+<li>review</li>
+<li>test</li>
+<li>commit</li>
+</ul>
+<p>让自己先感受到“少写重复提示词”的收益，再继续扩展。</p>
+<h3 id="8-3-第三步：为复杂任务引入-Subagent"><a href="#8-3-第三步：为复杂任务引入-Subagent" class="headerlink" title="8.3 第三步：为复杂任务引入 Subagent"></a>8.3 第三步：为复杂任务引入 Subagent</h3><p>当你已经开始处理更复杂的项目工作，比如安全检查、架构分析、文档生成并行推进时，再去拆 <code>Subagent</code> 会比较自然。</p>
+<p>这一步的关键不是“炫技”，而是：</p>
+<p><code>任务复杂度已经高到一个 AI 不适合全包了。</code></p>
+<h3 id="8-4-第四步：按需接入-MCP"><a href="#8-4-第四步：按需接入-MCP" class="headerlink" title="8.4 第四步：按需接入 MCP"></a>8.4 第四步：按需接入 MCP</h3><p>当你发现自己反复在复制：</p>
+<ul>
+<li>文件内容</li>
+<li>GitHub diff</li>
+<li>数据查询结果</li>
+<li>页面报错日志</li>
+</ul>
+<p>就说明 <code>MCP</code> 很可能已经值得接了。</p>
+<p>优先接那些最常用、最稳定、最可控的服务，不要一开始就搞成“大而全的平台工程”。</p>
+<h3 id="8-5-第五步：把高价值流程沉淀成-Skills"><a href="#8-5-第五步：把高价值流程沉淀成-Skills" class="headerlink" title="8.5 第五步：把高价值流程沉淀成 Skills"></a>8.5 第五步：把高价值流程沉淀成 Skills</h3><p>等你已经积累出几套有效方法后，再做 <code>Skills</code> 会特别顺。</p>
+<p>这一步最像“把个人经验产品化”。</p>
+<p>从长期看，<code>Skills</code> 往往也是最能拉开团队协作差距的一层。</p>
+<h2 id="9-一个很实用的判断标准：先解决稳定性，再追求炫技"><a href="#9-一个很实用的判断标准：先解决稳定性，再追求炫技" class="headerlink" title="9. 一个很实用的判断标准：先解决稳定性，再追求炫技"></a>9. 一个很实用的判断标准：先解决稳定性，再追求炫技</h2><p>如果你现在正在用 AI 写代码，我很推荐你记住一句话：</p>
+<p><code>先让 AI 稳，再让 AI 强。</code></p>
+<p>所谓“稳”，是指：</p>
+<ul>
+<li>输出风格稳定</li>
+<li>行为边界明确</li>
+<li>常用流程可复用</li>
+<li>外部连接可控制</li>
+</ul>
+<p>所谓“强”，才是后面的：</p>
+<ul>
+<li>多代理协作</li>
+<li>自动化接入更多系统</li>
+<li>沉淀复杂技能体系</li>
+</ul>
+<p>很多团队一开始就冲着“全自动开发”去，最后反而因为规范不清、权限混乱、流程不稳，导致 AI 输出越来越不可控。</p>
+<p>真正成熟的 AI 工作流，通常不是一开始就很复杂，而是先把基础能力层层打牢。</p>
+<h2 id="10-写在最后"><a href="#10-写在最后" class="headerlink" title="10. 写在最后"></a>10. 写在最后</h2><p>回头看这五个概念，你会发现它们其实对应的是同一件事：</p>
+<p><code>让 AI 从“会回答问题”升级为“能稳定参与项目”。</code></p>
+<p>这也是为什么我越来越觉得，未来的开发效率差距，未必只取决于谁写提示词更厉害，而更取决于谁更早把 AI 接进了真实工作流。</p>
+<p>如果你现在正准备优化自己的 AI 编程方式，我会建议你先别急着研究最复杂的能力，先做两件小事：</p>
+<ol>
+<li>写一份真正对项目有约束力的 <code>Rules</code></li>
+<li>把最常用的两个重复动作收敛成 <code>Commands</code></li>
+</ol>
+<p>只做这两步，你就已经不是在“用 AI 聊天”，而是在开始搭自己的 AI 开发流程了。</p>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+    
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/Hexblog/2026/04/09/hello-world/">前端开发如何用好 AI Skill</a></div></section></div>
+
+
+
+
 
 
 <footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/about/">BugHunter</a> 搭建，基于 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar 1.33.1</a> 主题运行。<br>这里主要记录开发笔记、问题排查与技术思考，欢迎一起交流。</p>
 </div></footer>
-<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right"></aside><div class='float-panel'>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right"><div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%8E%B0%E5%9C%A8%E8%A6%81%E9%87%8D%E6%96%B0%E7%90%86%E8%A7%A3-AI-%E7%BC%96%E7%A8%8B"><span class="toc-text">1. 为什么现在要重新理解 AI 编程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Rules%EF%BC%9A%E5%85%88%E6%8A%8A%E2%80%9C%E9%A1%B9%E7%9B%AE%E8%A7%84%E7%9F%A9%E2%80%9D%E5%86%99%E6%B8%85%E6%A5%9A"><span class="toc-text">2. Rules：先把“项目规矩”写清楚</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-Rules-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">2.1 Rules 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-Rules-%E6%9C%80%E7%9B%B4%E6%8E%A5%E7%9A%84%E4%BB%B7%E5%80%BC"><span class="toc-text">2.2 Rules 最直接的价值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E4%B8%80%E4%BB%BD%E6%9B%B4%E5%AE%9E%E7%94%A8%E7%9A%84-Rules-%E7%A4%BA%E4%BE%8B"><span class="toc-text">2.3 一份更实用的 Rules 示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Commands%EF%BC%9A%E6%8A%8A%E9%AB%98%E9%A2%91%E5%8A%A8%E4%BD%9C%E5%8E%8B%E7%BC%A9%E6%88%90%E4%B8%80%E4%B8%AA%E5%85%A5%E5%8F%A3"><span class="toc-text">3. Commands：把高频动作压缩成一个入口</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-Commands-%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98"><span class="toc-text">3.1 Commands 解决了什么问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-Commands-%E9%80%82%E5%90%88%E6%B2%89%E6%B7%80%E5%93%AA%E4%BA%9B%E5%9C%BA%E6%99%AF"><span class="toc-text">3.2 Commands 适合沉淀哪些场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-Commands-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BE%88%E9%80%82%E5%90%88%E5%9B%A2%E9%98%9F%E4%BD%BF%E7%94%A8"><span class="toc-text">3.3 Commands 为什么很适合团队使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Subagent%EF%BC%9A%E8%AE%A9%E5%A4%9A%E4%B8%AA-AI-%E5%90%84%E5%B9%B2%E5%90%84%E7%9A%84"><span class="toc-text">4. Subagent：让多个 AI 各干各的</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-Subagent-%E5%88%B0%E5%BA%95%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">4.1 Subagent 到底是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E4%BB%80%E4%B9%88%E5%9C%BA%E6%99%AF%E9%80%82%E5%90%88%E7%94%A8-Subagent"><span class="toc-text">4.2 什么场景适合用 Subagent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E4%BD%BF%E7%94%A8-Subagent-%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%88%99"><span class="toc-text">4.3 使用 Subagent 的核心原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-MCP%EF%BC%9A%E8%AE%A9-AI-%E4%B8%8D%E5%8F%AA%E4%BC%9A%E2%80%9C%E6%83%B3%E2%80%9D%EF%BC%8C%E8%BF%98%E8%83%BD%E5%AE%89%E5%85%A8%E5%9C%B0%E2%80%9C%E6%8E%A5%E2%80%9D"><span class="toc-text">5. MCP：让 AI 不只会“想”，还能安全地“接”</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-MCP-%E5%8F%AF%E4%BB%A5%E7%90%86%E8%A7%A3%E6%88%90%E4%BB%80%E4%B9%88"><span class="toc-text">5.1 MCP 可以理解成什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-MCP-%E5%85%B8%E5%9E%8B%E8%83%BD%E5%81%9A%E4%BB%80%E4%B9%88"><span class="toc-text">5.2 MCP 典型能做什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E7%90%86%E8%A7%A3-MCP-%E6%97%B6%E6%9C%80%E9%87%8D%E8%A6%81%E7%9A%84%E4%B8%80%E7%82%B9"><span class="toc-text">5.3 理解 MCP 时最重要的一点</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Skills%EF%BC%9A%E6%8A%8A%E4%B8%80%E6%AC%A1%E7%BB%8F%E9%AA%8C%E6%B2%89%E6%B7%80%E6%88%90%E4%B8%8B%E6%AC%A1%E8%BF%98%E8%83%BD%E5%A4%8D%E7%94%A8%E7%9A%84%E8%83%BD%E5%8A%9B"><span class="toc-text">6. Skills：把一次经验沉淀成下次还能复用的能力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-Skills-%E5%92%8C-MCP-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">6.1 Skills 和 MCP 的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84%E5%86%85%E5%AE%B9%E9%80%82%E5%90%88%E5%81%9A%E6%88%90-Skill"><span class="toc-text">6.2 什么样的内容适合做成 Skill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-Skills-%E6%9C%80%E9%80%82%E5%90%88%E6%B2%89%E6%B7%80%E5%9B%A2%E9%98%9F%E7%BB%8F%E9%AA%8C"><span class="toc-text">6.3 Skills 最适合沉淀团队经验</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E8%BF%99%E4%BA%94%E4%BB%B6%E5%A5%97%E4%B9%8B%E9%97%B4%EF%BC%8C%E5%BA%94%E8%AF%A5%E6%80%8E%E4%B9%88%E7%90%86%E8%A7%A3%E5%85%B3%E7%B3%BB"><span class="toc-text">7. 这五件套之间，应该怎么理解关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E5%A6%82%E6%9E%9C%E4%BD%A0%E7%8E%B0%E5%9C%A8%E5%B0%B1%E6%83%B3%E5%BC%80%E5%A7%8B%EF%BC%8C%E6%9C%80%E6%8E%A8%E8%8D%90%E7%9A%84%E8%90%BD%E5%9C%B0%E9%A1%BA%E5%BA%8F"><span class="toc-text">8. 如果你现在就想开始，最推荐的落地顺序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E7%AC%AC%E4%B8%80%E6%AD%A5%EF%BC%9A%E5%85%88%E8%A1%A5-Rules"><span class="toc-text">8.1 第一步：先补 Rules</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E7%AC%AC%E4%BA%8C%E6%AD%A5%EF%BC%9A%E6%8C%91-2-%E5%88%B0-3-%E4%B8%AA%E9%AB%98%E9%A2%91%E5%9C%BA%E6%99%AF%E5%81%9A-Commands"><span class="toc-text">8.2 第二步：挑 2 到 3 个高频场景做 Commands</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E7%AC%AC%E4%B8%89%E6%AD%A5%EF%BC%9A%E4%B8%BA%E5%A4%8D%E6%9D%82%E4%BB%BB%E5%8A%A1%E5%BC%95%E5%85%A5-Subagent"><span class="toc-text">8.3 第三步：为复杂任务引入 Subagent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-%E7%AC%AC%E5%9B%9B%E6%AD%A5%EF%BC%9A%E6%8C%89%E9%9C%80%E6%8E%A5%E5%85%A5-MCP"><span class="toc-text">8.4 第四步：按需接入 MCP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-%E7%AC%AC%E4%BA%94%E6%AD%A5%EF%BC%9A%E6%8A%8A%E9%AB%98%E4%BB%B7%E5%80%BC%E6%B5%81%E7%A8%8B%E6%B2%89%E6%B7%80%E6%88%90-Skills"><span class="toc-text">8.5 第五步：把高价值流程沉淀成 Skills</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E4%B8%80%E4%B8%AA%E5%BE%88%E5%AE%9E%E7%94%A8%E7%9A%84%E5%88%A4%E6%96%AD%E6%A0%87%E5%87%86%EF%BC%9A%E5%85%88%E8%A7%A3%E5%86%B3%E7%A8%B3%E5%AE%9A%E6%80%A7%EF%BC%8C%E5%86%8D%E8%BF%BD%E6%B1%82%E7%82%AB%E6%8A%80"><span class="toc-text">9. 一个很实用的判断标准：先解决稳定性，再追求炫技</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E5%86%99%E5%9C%A8%E6%9C%80%E5%90%8E"><span class="toc-text">10. 写在最后</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
   </button>
@@ -97,7 +437,7 @@
 
 <script type="text/javascript">
   window.canonical = {"closeEnable":true,"closeText":"关闭提示","originalHost":null,"officialHosts":["localhost"],"encoded":""};
-  window.canonical["param"] = {"permalink":null,"checklink":"/js/plugins/video.js"};
+  window.canonical["param"] = {"permalink":"https://cyj950730.github.io/Hexblog/2026/04/10/ai-coding-five-piece/","checklink":"/js/plugins/video.js"};
   // Fix: Ensure page is at the correct top position on data load
   if (history.scrollRestoration) {
     history.scrollRestoration = 'auto';
