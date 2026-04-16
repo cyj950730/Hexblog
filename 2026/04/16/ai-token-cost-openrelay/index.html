@@ -17,27 +17,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
   <meta name="theme-color" content="#f9fafb">
-  <title>前端开发如何用好 AI Skill - BugHunter</title>
+  <title>AI 时代程序员的 Token 成本困局：把“找额度”变成工程能力 - BugHunter</title>
 
   
-    <meta name="description" content="这两年，AI 已经不是“能不能用”的问题，而是“怎么用得更稳、更快、更像一个靠谱搭档”。 对于前端开发来说，AI 最有价值的地方，不只是生成几段代码，而是把它当成一种可复用的 skill：让它参与需求拆解、页面实现、组件重构、样式优化、调试排查，甚至文档整理。 这篇文章就记录一下，我理解中的前端使用 AI skill 的几个高价值场景。 1. 把 AI 当成结对搭子，而不是代码 vending m">
+    <meta name="description" content="在 AI 编程全面普及后，程序员最大的隐形成本不再是学习成本，而是 Token 成本。本文结合 4 张免费额度对照图，拆解主流平台的免费策略，并分享如何借助开源项目 openrelay 把“找高性价比 Token”从体力活变成可持续的工程实践。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端开发如何用好 AI Skill">
-<meta property="og:url" content="https://cyj950730.github.io/Hexblog/2026/04/09/hello-world/">
+<meta property="og:title" content="AI 时代程序员的 Token 成本困局：把“找额度”变成工程能力">
+<meta property="og:url" content="https://cyj950730.github.io/Hexblog/2026/04/16/ai-token-cost-openrelay/">
 <meta property="og:site_name" content="BugHunter">
-<meta property="og:description" content="这两年，AI 已经不是“能不能用”的问题，而是“怎么用得更稳、更快、更像一个靠谱搭档”。 对于前端开发来说，AI 最有价值的地方，不只是生成几段代码，而是把它当成一种可复用的 skill：让它参与需求拆解、页面实现、组件重构、样式优化、调试排查，甚至文档整理。 这篇文章就记录一下，我理解中的前端使用 AI skill 的几个高价值场景。 1. 把 AI 当成结对搭子，而不是代码 vending m">
+<meta property="og:description" content="在 AI 编程全面普及后，程序员最大的隐形成本不再是学习成本，而是 Token 成本。本文结合 4 张免费额度对照图，拆解主流平台的免费策略，并分享如何借助开源项目 openrelay 把“找高性价比 Token”从体力活变成可持续的工程实践。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-04-09T03:39:00.000Z">
-<meta property="article:modified_time" content="2026-04-09T06:19:09.111Z">
+<meta property="og:image" content="https://cyj950730.github.io/images/token-cost-guide-1.png">
+<meta property="og:image" content="https://cyj950730.github.io/images/token-cost-guide-2.png">
+<meta property="og:image" content="https://cyj950730.github.io/images/token-cost-guide-3.png">
+<meta property="og:image" content="https://cyj950730.github.io/images/token-cost-guide-4.png">
+<meta property="article:published_time" content="2026-04-16T01:10:00.000Z">
+<meta property="article:modified_time" content="2026-04-16T02:17:53.764Z">
 <meta property="article:author" content="BugHunter">
 <meta property="article:tag" content="AI">
-<meta property="article:tag" content="前端">
-<meta property="article:tag" content="效率工具">
+<meta property="article:tag" content="Token">
+<meta property="article:tag" content="VSCode">
+<meta property="article:tag" content="openrelay">
+<meta property="article:tag" content="成本优化">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cyj950730.github.io/images/token-cost-guide-1.png">
   
   
   
-  <meta name="keywords" content="AI,前端,效率工具">
+  <meta name="keywords" content="AI,Token,成本优化,openrelay,VSCode">
 
   <!-- feed -->
   
@@ -49,7 +56,7 @@
 
   
 
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BugHunter","sameAs":[]},"dateCreated":"2026-04-09T11:39:00+08:00","dateModified":"2026-04-09T14:19:09+08:00","datePublished":"2026-04-09T11:39:00+08:00","description":"","headline":"前端开发如何用好 AI Skill","mainEntityOfPage":{"@type":"WebPage","@id":"https://cyj950730.github.io/Hexblog/2026/04/09/hello-world/"},"publisher":{"@type":"Organization","name":"BugHunter","sameAs":[]},"url":"https://cyj950730.github.io/Hexblog/2026/04/09/hello-world/","keywords":"AI, 前端, 效率工具","image":[]}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BugHunter","sameAs":[]},"dateCreated":"2026-04-16T09:10:00+08:00","dateModified":"2026-04-16T10:17:53+08:00","datePublished":"2026-04-16T09:10:00+08:00","description":"在 AI 编程全面普及后，程序员最大的隐形成本不再是学习成本，而是 Token 成本。本文结合 4 张免费额度对照图，拆解主流平台的免费策略，并分享如何借助开源项目 openrelay 把“找高性价比 Token”从体力活变成可持续的工程实践。","headline":"AI 时代程序员的 Token 成本困局：把“找额度”变成工程能力","mainEntityOfPage":{"@type":"WebPage","@id":"https://cyj950730.github.io/Hexblog/2026/04/16/ai-token-cost-openrelay/"},"publisher":{"@type":"Organization","name":"BugHunter","sameAs":[]},"url":"https://cyj950730.github.io/Hexblog/2026/04/16/ai-token-cost-openrelay/","keywords":"AI, Token, 成本优化, openrelay, VSCode","image":[]}</script>
   
 </head>
 <body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
@@ -78,119 +85,73 @@
 <div class="article banner top">
   <div class="content">
     <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/Hexblog/Hexblog/">主页</a>
-<span class="sep"></span><a class="cap breadcrumb" href="/Hexblog/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/Hexblog/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/">前端开发</a></div>
-<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-04-09T03:39:00.000Z">2026-04-09</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-04-09T06:19:09.111Z">2026-04-09</time></span></div></div></div>
+<span class="sep"></span><a class="cap breadcrumb" href="/Hexblog/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/Hexblog/categories/AI-%E5%BC%80%E5%8F%91/">AI 开发</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2026-04-16T01:10:00.000Z">2026-04-16</time></span><span class="sep updated"></span><span class="text updated">更新于：<time datetime="2026-04-16T02:17:53.764Z">2026-04-16</time></span></div></div></div>
     
     <div class="bottom only-title">
       
       <div class="text-area">
-        <h1 class="text title"><span>前端开发如何用好 AI Skill</span></h1>
+        <h1 class="text title"><span>AI 时代程序员的 Token 成本困局：把“找额度”变成工程能力</span></h1>
         
       </div>
     </div>
     
   </div>
-  </div><article class="md-text content"><p>这两年，<code>AI</code> 已经不是“能不能用”的问题，而是“怎么用得更稳、更快、更像一个靠谱搭档”。</p>
-<p>对于前端开发来说，AI 最有价值的地方，不只是生成几段代码，而是把它当成一种可复用的 <strong>skill</strong>：让它参与需求拆解、页面实现、组件重构、样式优化、调试排查，甚至文档整理。</p>
-<p>这篇文章就记录一下，我理解中的前端使用 AI skill 的几个高价值场景。</p>
-<h2 id="1-把-AI-当成结对搭子，而不是代码-vending-machine"><a href="#1-把-AI-当成结对搭子，而不是代码-vending-machine" class="headerlink" title="1. 把 AI 当成结对搭子，而不是代码 vending machine"></a>1. 把 AI 当成结对搭子，而不是代码 vending machine</h2><p>很多人一开始使用 AI，习惯直接丢一句：</p>
-<p><code>帮我写一个登录页</code></p>
-<p>结果往往也很明显：能跑，但很普通；能看，但不贴业务；能生成，但后续不好改。</p>
-<p>更好的方式是把 AI 当成一个结对开发搭子，给它明确上下文，例如：</p>
+  </div><article class="md-text content"><p>如果你最近在高频使用 AI 写代码，大概率会有同一种感受：</p>
+<p>不是不会用模型，而是快用不起了。</p>
+<p>很多程序员正在经历同一个现实：白天写业务，晚上研究哪家还有免费额度、哪种路由更省钱、哪套方案更稳。<br>“找高性价比 Token”，已经从一个技巧，变成了不少开发者的第二工作。</p>
+<h2 id="Token-成本，为什么成了新焦虑"><a href="#Token-成本，为什么成了新焦虑" class="headerlink" title="Token 成本，为什么成了新焦虑"></a>Token 成本，为什么成了新焦虑</h2><p>AI 编程的效率红利是真的，但账单也是真的。<br>当我们把 AI 接入 VSCode、接入调试流程、接入日常开发后，调用频率会迅速拉高：</p>
 <ul>
-<li>当前项目使用什么框架，比如 <code>Vue 3</code>、<code>React</code>、<code>Next.js</code></li>
-<li>是否有现成设计系统，比如 <code>Ant Design</code>、<code>Element Plus</code></li>
-<li>页面要解决什么业务问题</li>
-<li>你更看重速度、可维护性，还是视觉表现</li>
+<li>写代码要用</li>
+<li>改代码要用</li>
+<li>Debug 要用</li>
+<li>重构、测试、文档都要用</li>
 </ul>
-<p>当上下文足够清楚时，AI 输出的代码质量会稳定很多。</p>
-<h2 id="2-用-AI-skill-做页面骨架，节省重复劳动"><a href="#2-用-AI-skill-做页面骨架，节省重复劳动" class="headerlink" title="2. 用 AI skill 做页面骨架，节省重复劳动"></a>2. 用 AI skill 做页面骨架，节省重复劳动</h2><p>前端开发里最容易消耗精力的，往往不是难点，而是重复搭建：</p>
-<ul>
-<li>列表页布局</li>
-<li>表单页结构</li>
-<li>弹窗与抽屉</li>
-<li>空状态、加载态、错误态</li>
-<li>响应式适配</li>
-</ul>
-<p>这些内容很适合交给 AI 先打草稿。</p>
-<p>一个比较实用的工作流是：</p>
+<p>只要免费额度见底，成本就会从“可接受”快速变成“有压力”。</p>
+<h2 id="一条更稳的路：推荐-openrelay"><a href="#一条更稳的路：推荐-openrelay" class="headerlink" title="一条更稳的路：推荐 openrelay"></a>一条更稳的路：推荐 openrelay</h2><p>项目地址：<br><a target="_blank" rel="noopener" href="https://github.com/romgX/openrelay/tree/main?tab=readme-ov-file">https://github.com/romgX/openrelay/tree/main?tab=readme-ov-file</a></p>
+<p>我推荐 openrelay，核心是三点：</p>
 <ol>
-<li>自己先写出页面目标和数据结构</li>
-<li>让 AI 生成第一版布局与组件拆分</li>
-<li>自己再根据项目规范做二次收敛</li>
-<li>最后让 AI 帮忙补齐边界情况和注释</li>
+<li>开源透明，逻辑可查，不是黑盒。</li>
+<li>聚合和路由能力实用，适合做多平台额度管理。</li>
+<li>对开发场景友好，可支持 VSCode 等相关编译器&#x2F;IDE 接入。</li>
 </ol>
-<p>这样做的好处是：你不会失去对代码的控制权，但可以明显减少体力活。</p>
-<h2 id="3-用-AI-帮你重构，而不是只让它“从零生成”"><a href="#3-用-AI-帮你重构，而不是只让它“从零生成”" class="headerlink" title="3. 用 AI 帮你重构，而不是只让它“从零生成”"></a>3. 用 AI 帮你重构，而不是只让它“从零生成”</h2><p>我越来越觉得，AI 在前端里真正厉害的地方，不是从零写一个 demo，而是帮助我们处理已有代码。</p>
-<p>比如下面这些场景：</p>
+<p>另外，它的推广机制也有吸引力：推广可分佣，邀请满 20 人可终生免费获取 Token（请以平台当期规则为准）。</p>
+<h2 id="4-张图给出的关键信号"><a href="#4-张图给出的关键信号" class="headerlink" title="4 张图给出的关键信号"></a>4 张图给出的关键信号</h2><p>你给的这 4 张图，真正有价值的不是“哪家绝对最好”，而是让我们看清了免费额度的结构：</p>
 <ul>
-<li>把一个 500 行页面拆成多个组件</li>
-<li>把重复的请求逻辑抽成 hooks 或 composables</li>
-<li>把散落的内联样式整理成统一样式方案</li>
-<li>把命名混乱的变量和函数改得更清晰</li>
-<li>把 Options API 迁移到 Composition API</li>
+<li>有的按天重置</li>
+<li>有的按月发放</li>
+<li>有的新用户礼包大，但持续性一般</li>
+<li>有的共享池很大，但存在波动</li>
 </ul>
-<p>这些工作很费脑，但规则性又很强，特别适合 AI 参与。</p>
-<p>重点是，不要只说“帮我重构一下”，而要说清楚目标，例如：</p>
+<p>也就是说，现在不是“没有免费额度”，而是“额度分散、周期复杂、入口碎片化”。</p>
+<h3 id="图-1：IDE-服务商免费额度（更新至-2026-03-31）"><a href="#图-1：IDE-服务商免费额度（更新至-2026-03-31）" class="headerlink" title="图 1：IDE 服务商免费额度（更新至 2026-03-31）"></a>图 1：IDE 服务商免费额度（更新至 2026-03-31）</h3><p><img src="/Hexblog/../images/token-cost-guide-1.png" alt="IDE 服务商免费额度指南"></p>
+<p>这张图最有代表性的结论是：本地安装型和 IDE 深度集成型平台，体验通常更顺滑，但额度规则差异极大，适合按你的真实开发节奏做组合。</p>
+<h3 id="图-2：顶级免费额度平台"><a href="#图-2：顶级免费额度平台" class="headerlink" title="图 2：顶级免费额度平台"></a>图 2：顶级免费额度平台</h3><p><img src="/Hexblog/../images/token-cost-guide-2.png" alt="顶级免费额度平台"></p>
+<p>这里最亮眼的信息点之一是 <strong>Mistral AI 每月约 10 亿 Token（共享）</strong>。<br>如果你的使用场景是中高频开发调用，这类“高上限共享额度”会比零散小额更有价值。</p>
+<h3 id="图-3：API-服务商免费-试用额度"><a href="#图-3：API-服务商免费-试用额度" class="headerlink" title="图 3：API 服务商免费&#x2F;试用额度"></a>图 3：API 服务商免费&#x2F;试用额度</h3><p><img src="/Hexblog/../images/token-cost-guide-3.png" alt="API 服务商额度对照"></p>
+<p>这张图适合做“备选池”管理。不同服务商在新用户额度、并发、重置周期上差异明显，适合放到路由策略里按需切换。</p>
+<h3 id="图-4：国内平台额度对照"><a href="#图-4：国内平台额度对照" class="headerlink" title="图 4：国内平台额度对照"></a>图 4：国内平台额度对照</h3><p><img src="/Hexblog/../images/token-cost-guide-4.png" alt="国内平台免费额度"></p>
+<p>国内平台的优势通常在注册便利、网络稳定和本地化支持，对很多工程团队来说，实际可用性往往比纸面参数更关键。</p>
+<h2 id="成本对比：为什么“性价比”是核心命题"><a href="#成本对比：为什么“性价比”是核心命题" class="headerlink" title="成本对比：为什么“性价比”是核心命题"></a>成本对比：为什么“性价比”是核心命题</h2><p>你提到的几个点非常关键：</p>
 <ul>
-<li>不改变现有功能</li>
-<li>优先提升可读性</li>
-<li>保持接口命名不变</li>
-<li>拆分后每个组件职责单一</li>
+<li>Mistral AI：每月 10 亿 Token 免费额度（共享）</li>
+<li>拜拜：免费赠送约 350 元额度</li>
+<li>市面上不少中转站：1 亿 Token 大约 35 元</li>
 </ul>
-<p>这样 AI 更容易给出可落地的结果。</p>
-<h2 id="4-用-AI-做样式优化，比“自己硬调”更高效"><a href="#4-用-AI-做样式优化，比“自己硬调”更高效" class="headerlink" title="4. 用 AI 做样式优化，比“自己硬调”更高效"></a>4. 用 AI 做样式优化，比“自己硬调”更高效</h2><p>前端同学经常会遇到一个微妙时刻：</p>
-<p>功能写完了，但页面“就是差点感觉”。</p>
-<p>这时候 AI 很适合做审美和实现之间的桥梁，比如：</p>
-<ul>
-<li>让它分析为什么页面层次感不够</li>
-<li>让它提出更好的留白、字号、配色建议</li>
-<li>让它补充悬停态、过渡动画、滚动反馈</li>
-<li>让它优化移动端的排版与按钮尺寸</li>
-</ul>
-<p>尤其是做活动页、作品集、个人博客这类页面时，AI 能很快给出几个不同方向，再由我们挑一个继续打磨。</p>
-<h2 id="5-用-AI-排查前端-bug，效率提升很明显"><a href="#5-用-AI-排查前端-bug，效率提升很明显" class="headerlink" title="5. 用 AI 排查前端 bug，效率提升很明显"></a>5. 用 AI 排查前端 bug，效率提升很明显</h2><p>调 bug 这件事，前端真的太容易卡住了。</p>
-<p>一个布局错位、一个状态不同步、一个接口字段不对，常常就能卡半小时。</p>
-<p>这时候 AI 的价值主要体现在：</p>
-<ul>
-<li>帮你快速复盘问题现象</li>
-<li>根据报错信息推测最可能的原因</li>
-<li>提供一条条可验证的排查路径</li>
-<li>帮你解释某段“以前的自己都看不懂”的代码</li>
-</ul>
-<p>比较推荐的提问方式是：</p>
-<ul>
-<li>问题现象是什么</li>
-<li>预期结果是什么</li>
-<li>实际结果是什么</li>
-<li>相关代码片段是什么</li>
-<li>最近改过什么</li>
-</ul>
-<p>你会发现，AI 给出的答案会从“猜谜”变成“协助定位”。</p>
-<h2 id="6-前端使用-AI-skill，核心不是提示词，而是流程设计"><a href="#6-前端使用-AI-skill，核心不是提示词，而是流程设计" class="headerlink" title="6. 前端使用 AI skill，核心不是提示词，而是流程设计"></a>6. 前端使用 AI skill，核心不是提示词，而是流程设计</h2><p>很多文章都在教提示词，但我觉得真正拉开差距的，其实是流程。</p>
-<p>一个更成熟的前端 AI 使用流程，通常会长这样：</p>
+<p>如果按长期使用计算，单纯“按量买”会很快累积压力。<br>所以真正可持续的方式，不是只盯一家，而是建立“免费额度池 + 路由 + 成本监控”的组合策略。</p>
+<h2 id="我的实测建议（开发者视角）"><a href="#我的实测建议（开发者视角）" class="headerlink" title="我的实测建议（开发者视角）"></a>我的实测建议（开发者视角）</h2><p>结合你的实测结论和当下主流用法，给 3 条能直接落地的建议：</p>
 <ol>
-<li>先由人定义目标和约束</li>
-<li>让 AI 产出候选方案</li>
-<li>人来筛选与拍板</li>
-<li>AI 继续补实现细节</li>
-<li>人做最终验收、测试和取舍</li>
+<li>把 openrelay 当作统一入口，先解决“可持续可用”。</li>
+<li>把高额度平台放到高频任务（重构、批量生成、长上下文）。</li>
+<li>把高质量但贵的模型留给关键节点（架构评审、复杂 bug、最终润色）。</li>
 </ol>
-<p>在这个流程里，AI 负责提速，人负责判断。</p>
-<p>这也是我目前最认可的协作方式：<br>不是让 AI 替代前端，而是让前端把更多时间花在架构、体验和业务决策上。</p>
-<h2 id="7-我自己最常用的几个-AI-场景"><a href="#7-我自己最常用的几个-AI-场景" class="headerlink" title="7. 我自己最常用的几个 AI 场景"></a>7. 我自己最常用的几个 AI 场景</h2><p>如果只总结几个最常用、最不容易踩坑的场景，我会选这几个：</p>
-<ul>
-<li>新页面起稿</li>
-<li>旧组件重构</li>
-<li>CSS 细节打磨</li>
-<li>报错排查</li>
-<li>文档与注释整理</li>
-<li>根据接口结构生成前端类型定义</li>
-</ul>
-<p>这些事情都不是“离了 AI 就不能做”，但有 AI 参与以后，推进速度会快很多。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>前端使用 AI skill，最重要的不是追求“全自动生成”，而是建立一种稳定、可重复、可验证的协作方式。</p>
-<p>当我们把 AI 用在合适的位置，它就不只是一个聊天工具，而会慢慢变成开发流程中的高效助手。</p>
-<p>对我来说，这也是未来前端工作方式里很自然的一部分：<br>写代码的人依然是我们，但做得更快、更稳，也更从容一点。</p>
+<p>这样做的核心收益是：不牺牲质量的前提下，明显降低月度 Token 成本。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>AI 时代最贵的，往往不是模型本身，而是开发者的注意力。<br>如果每天都把大量时间花在“到处找额度”，长期看损失的是专注和产出。</p>
+<p>把 Token 成本问题工程化，才是更稳的答案。<br>而 openrelay 这种开源、可验证、可集成的方案，值得每个高频使用 AI 的程序员认真看一遍。</p>
+<hr>
+<blockquote>
+<p>说明：本文中的免费额度、活动和推荐信息基于你提供的资料整理（含“更新：2026-03-31”的截图）。平台政策和活动可能调整，请以官方最新公告为准。</p>
+</blockquote>
 </article>
 <div class="article-footer">
     <section id="license">
@@ -202,7 +163,7 @@
 
 </div>
 
-<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/Hexblog/2026/04/10/ai-coding-five-piece/">AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/Hexblog/2025/11/15/welcome/">欢迎来到我的博客</a></div></section></div>
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"></div><div class="item" id="next"><div class="note">较早文章</div><a href="/Hexblog/2026/04/11/hermes-agent-vs-openclaw-frontend/">前端开发者视角：Hermes Agent 和 OpenClaw 有什么区别，怎么选</a></div></section></div>
 
 
 
@@ -215,7 +176,7 @@
 
 
 
-<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%8A%8A-AI-%E5%BD%93%E6%88%90%E7%BB%93%E5%AF%B9%E6%90%AD%E5%AD%90%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E4%BB%A3%E7%A0%81-vending-machine"><span class="toc-text">1. 把 AI 当成结对搭子，而不是代码 vending machine</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%94%A8-AI-skill-%E5%81%9A%E9%A1%B5%E9%9D%A2%E9%AA%A8%E6%9E%B6%EF%BC%8C%E8%8A%82%E7%9C%81%E9%87%8D%E5%A4%8D%E5%8A%B3%E5%8A%A8"><span class="toc-text">2. 用 AI skill 做页面骨架，节省重复劳动</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%94%A8-AI-%E5%B8%AE%E4%BD%A0%E9%87%8D%E6%9E%84%EF%BC%8C%E8%80%8C%E4%B8%8D%E6%98%AF%E5%8F%AA%E8%AE%A9%E5%AE%83%E2%80%9C%E4%BB%8E%E9%9B%B6%E7%94%9F%E6%88%90%E2%80%9D"><span class="toc-text">3. 用 AI 帮你重构，而不是只让它“从零生成”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E7%94%A8-AI-%E5%81%9A%E6%A0%B7%E5%BC%8F%E4%BC%98%E5%8C%96%EF%BC%8C%E6%AF%94%E2%80%9C%E8%87%AA%E5%B7%B1%E7%A1%AC%E8%B0%83%E2%80%9D%E6%9B%B4%E9%AB%98%E6%95%88"><span class="toc-text">4. 用 AI 做样式优化，比“自己硬调”更高效</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E7%94%A8-AI-%E6%8E%92%E6%9F%A5%E5%89%8D%E7%AB%AF-bug%EF%BC%8C%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87%E5%BE%88%E6%98%8E%E6%98%BE"><span class="toc-text">5. 用 AI 排查前端 bug，效率提升很明显</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E5%89%8D%E7%AB%AF%E4%BD%BF%E7%94%A8-AI-skill%EF%BC%8C%E6%A0%B8%E5%BF%83%E4%B8%8D%E6%98%AF%E6%8F%90%E7%A4%BA%E8%AF%8D%EF%BC%8C%E8%80%8C%E6%98%AF%E6%B5%81%E7%A8%8B%E8%AE%BE%E8%AE%A1"><span class="toc-text">6. 前端使用 AI skill，核心不是提示词，而是流程设计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%88%91%E8%87%AA%E5%B7%B1%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84%E5%87%A0%E4%B8%AA-AI-%E5%9C%BA%E6%99%AF"><span class="toc-text">7. 我自己最常用的几个 AI 场景</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Token-%E6%88%90%E6%9C%AC%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%90%E4%BA%86%E6%96%B0%E7%84%A6%E8%99%91"><span class="toc-text">Token 成本，为什么成了新焦虑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%9D%A1%E6%9B%B4%E7%A8%B3%E7%9A%84%E8%B7%AF%EF%BC%9A%E6%8E%A8%E8%8D%90-openrelay"><span class="toc-text">一条更稳的路：推荐 openrelay</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%BC%A0%E5%9B%BE%E7%BB%99%E5%87%BA%E7%9A%84%E5%85%B3%E9%94%AE%E4%BF%A1%E5%8F%B7"><span class="toc-text">4 张图给出的关键信号</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE-1%EF%BC%9AIDE-%E6%9C%8D%E5%8A%A1%E5%95%86%E5%85%8D%E8%B4%B9%E9%A2%9D%E5%BA%A6%EF%BC%88%E6%9B%B4%E6%96%B0%E8%87%B3-2026-03-31%EF%BC%89"><span class="toc-text">图 1：IDE 服务商免费额度（更新至 2026-03-31）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE-2%EF%BC%9A%E9%A1%B6%E7%BA%A7%E5%85%8D%E8%B4%B9%E9%A2%9D%E5%BA%A6%E5%B9%B3%E5%8F%B0"><span class="toc-text">图 2：顶级免费额度平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE-3%EF%BC%9AAPI-%E6%9C%8D%E5%8A%A1%E5%95%86%E5%85%8D%E8%B4%B9-%E8%AF%95%E7%94%A8%E9%A2%9D%E5%BA%A6"><span class="toc-text">图 3：API 服务商免费&#x2F;试用额度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE-4%EF%BC%9A%E5%9B%BD%E5%86%85%E5%B9%B3%E5%8F%B0%E9%A2%9D%E5%BA%A6%E5%AF%B9%E7%85%A7"><span class="toc-text">图 4：国内平台额度对照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%90%E6%9C%AC%E5%AF%B9%E6%AF%94%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%E2%80%9C%E6%80%A7%E4%BB%B7%E6%AF%94%E2%80%9D%E6%98%AF%E6%A0%B8%E5%BF%83%E5%91%BD%E9%A2%98"><span class="toc-text">成本对比：为什么“性价比”是核心命题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%AE%9E%E6%B5%8B%E5%BB%BA%E8%AE%AE%EF%BC%88%E5%BC%80%E5%8F%91%E8%80%85%E8%A7%86%E8%A7%92%EF%BC%89"><span class="toc-text">我的实测建议（开发者视角）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-text">结语</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><!-- Icon from Solar by 480 Design - https://creativecommons.org/licenses/by/4.0/ --><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
 </div></aside><div class='float-panel'>
   <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
@@ -229,7 +190,7 @@
 
 <script type="text/javascript">
   window.canonical = {"closeEnable":true,"closeText":"关闭提示","originalHost":null,"officialHosts":["localhost"],"encoded":""};
-  window.canonical["param"] = {"permalink":"https://cyj950730.github.io/Hexblog/2026/04/09/hello-world/","checklink":"/js/plugins/video.js"};
+  window.canonical["param"] = {"permalink":"https://cyj950730.github.io/Hexblog/2026/04/16/ai-token-cost-openrelay/","checklink":"/js/plugins/video.js"};
   // Fix: Ensure page is at the correct top position on data load
   if (history.scrollRestoration) {
     history.scrollRestoration = 'auto';
