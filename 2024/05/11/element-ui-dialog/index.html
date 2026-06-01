@@ -1,0 +1,229 @@
+
+<!DOCTYPE html><html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="hexo-theme" content="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1" theme-name="Stellar" theme-version="1.33.1">
+
+
+  <meta name="generator" content="Hexo 8.1.1">
+  <meta http-equiv='x-dns-prefetch-control' content='on' />
+
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000">
+  <meta name="theme-color" content="#f9fafb">
+  <title>element-ui之dialog组件封装 - BugHunter</title>
+
+
+    <meta name="description" content="组件封装：&lt;template&gt; &lt;span&gt; &lt;span class=&quot;resetPass&quot; @click=&quot;openDialog&quot;&gt;修改密码&lt;/span&gt; &lt;el-dialog :visible.sync=&quot;DialogVisible&quot; :close-on-click-modal=&quot;false&quot; :destroy-on-close">
+<meta property="og:type" content="article">
+<meta property="og:title" content="element-ui之dialog组件封装">
+<meta property="og:url" content="https://cyj950730.github.io/Hexblog/2024/05/11/element-ui-dialog/">
+<meta property="og:site_name" content="BugHunter">
+<meta property="og:description" content="Element UI 之 dialog 组件封装，介绍如何将 el-dialog 封装为可复用的 Vue 组件，包含组件封装代码和使用示例。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-11T03:36:00.000Z">
+<meta property="article:modified_time" content="2024-05-11T03:36:00.000Z">
+<meta property="article:author" content="BugHunter">
+<meta property="article:tag" content="element">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="前端框架">
+<meta name="twitter:card" content="summary">
+
+
+
+  <meta name="keywords" content="element,vue,前端框架">
+
+  <!-- feed -->
+
+
+  <link rel="stylesheet" href="/Hexblog/css/main.css?v=1.33.1">
+
+
+
+
+
+
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"BugHunter","sameAs":[]},"dateCreated":"2024-05-11T11:36:00+08:00","dateModified":"2024-05-11T11:36:00+08:00","datePublished":"2024-05-11T11:36:00+08:00","description":"Element UI 之 dialog 组件封装，介绍如何将 el-dialog 封装为可复用的 Vue 组件。","headline":"element-ui之dialog组件封装","mainEntityOfPage":{"@type":"WebPage","@id":"https://cyj950730.github.io/Hexblog/2024/05/11/element-ui-dialog/"},"publisher":{"@type":"Organization","name":"BugHunter","sameAs":[]},"url":"https://cyj950730.github.io/Hexblog/2024/05/11/element-ui-dialog/","keywords":"element, vue, 前端框架","image":[]}</script>
+
+</head>
+<body><div id="l_cover"></div><div class="l_body content" id="start" layout="post" type="tech" ><aside class="l_left"><div class="sidebg"></div><div class="leftbar-container">
+
+
+<header class="header"><div class="logo-wrap"><a class="avatar" href="/Hexblog/about/"><div class="bg" style="opacity:0;background-image:url(https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/rainbow64@3x.webp);"></div><img no-lazy class="avatar" src="undefined"></a><a class="title" href="/"><div class="main">BugHunter</div><div class="sub cap">代码猎手的技术博客</div></a></div></header>
+
+<div class="nav-area">
+
+<nav class="menu dis-select"><a class="nav-item active" title="首页" href="/Hexblog/" style="color:#1BCDFC"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M4.75 10.73c0-.62 0-.93.14-1.21c.14-.28.39-.48.88-.88l4.2-3.36c.84-.67 1.26-1.01 1.73-1.01s.89.34 1.73 1.01l4.2 3.36c.49.4.74.6.88.88c.14.28.14.59.14 1.21v5.27c0 1.89 0 2.84-.59 3.42c-.58.58-1.53.58-3.41.58H9.34c-1.88 0-2.83 0-3.41-.58c-.59-.58-.59-1.53-.59-3.42z" opacity=".5"/><path fill="currentColor" d="M9.25 18a.75.75 0 0 1 .75-.75h4a.75.75 0 0 1 0 1.5h-4a.75.75 0 0 1-.75-.75M10 13.25a2 2 0 1 1 4 0V20h-4z"/></svg></a><a class="nav-item" title="归档" href="/Hexblog/archives/" style="color:#3DC550"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M3 8.5C3 7.1 3 6.4 3.27 5.87c.23-.46.6-.83 1.06-1.06C4.86 4.5 5.56 4.5 6.96 4.5h10.08c1.4 0 2.1 0 2.63.31c.46.23.83.6 1.06 1.06c.27.53.27 1.23.27 2.63V15c0 2.83 0 4.24-.88 5.12c-.88.88-2.29.88-5.12.88H8.99c-2.83 0-4.24 0-5.12-.88C3 19.24 3 17.83 3 15z" opacity=".5"/><path fill="currentColor" d="M7.25 3A.75.75 0 0 1 8 2.25h8a.75.75 0 0 1 0 1.5H8A.75.75 0 0 1 7.25 3m1.5 7A.75.75 0 0 1 9.5 9.25h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75m0 4A.75.75 0 0 1 9.5 13.25h5a.75.75 0 0 1 0 1.5h-5a.75.75 0 0 1-.75-.75"/></svg></a><a class="nav-item" title="分类" href="/Hexblog/categories/" style="color:#FA6400"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M4 7c0-1.41 0-2.11.44-2.56S5.59 4 7 4s2.11 0 2.56.44S10 5.59 10 7s0 2.11-.44 2.56S8.41 10 7 10s-2.11 0-2.56-.44S4 8.41 4 7m10 0c0-1.41 0-2.11.44-2.56S15.59 4 17 4s2.11 0 2.56.44S20 5.59 20 7s0 2.11-.44 2.56S18.41 10 17 10s-2.11 0-2.56-.44S14 8.41 14 7M4 17c0-1.41 0-2.11.44-2.56S5.59 14 7 14s2.11 0 2.56.44S10 15.59 10 17s0 2.11-.44 2.56S8.41 20 7 20s-2.11 0-2.56-.44S4 18.41 4 17m10 0c0-1.41 0-2.11.44-2.56S15.59 14 17 14s2.11 0 2.56.44S20 15.59 20 17s0 2.11-.44 2.56S18.41 20 17 20s-2.11 0-2.56-.44S14 18.41 14 17" opacity=".5"/></svg></a><a class="nav-item" title="关于" href="/Hexblog/about/" style="color:#F44336"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path fill="currentColor" d="M3 12c0-4.24 0-6.36 1.32-7.68S7.76 3 12 3s6.36 0 7.68 1.32S21 7.76 21 12s0 6.36-1.32 7.68S16.24 21 12 21s-6.36 0-7.68-1.32S3 16.24 3 12" opacity=".5"/><path fill="currentColor" d="M12 7.25A2.75 2.75 0 1 1 9.25 10A2.75 2.75 0 0 1 12 7.25M7.75 17a4.25 4.25 0 1 1 8.5 0v.25h-8.5z"/></svg></a></nav>
+</div>
+<div class="widgets">
+<div class="search-wrapper" id="search-wrapper"><form class="search-form"><a class="search-button" onclick="document.getElementById(&quot;search-input&quot;).focus();"><svg t="1705074644177" viewBox="0 0 1025 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1560" width="200" height="200"><path d="M1008.839137 935.96571L792.364903 719.491476a56.783488 56.783488 0 0 0-80.152866 0 358.53545 358.53545 0 1 1 100.857314-335.166073 362.840335 362.840335 0 0 1-3.689902 170.145468 51.248635 51.248635 0 1 0 99.217358 26.444296 462.057693 462.057693 0 1 0-158.255785 242.303546l185.930047 185.725053a51.248635 51.248635 0 0 0 72.568068 0 51.248635 51.248635 0 0 0 0-72.978056z" p-id="1561"></path><path d="M616.479587 615.969233a50.428657 50.428657 0 0 0-61.498362-5.534852 174.655348 174.655348 0 0 1-177.525271 3.484907 49.403684 49.403684 0 0 0-58.833433 6.76482l-3.074918 2.869923a49.403684 49.403684 0 0 0 8.609771 78.10292 277.767601 277.767601 0 0 0 286.992355-5.739847 49.403684 49.403684 0 0 0 8.404776-76.667958z" p-id="1562"></path></svg></a><input type="text" class="search-input" id="search-input" placeholder="站内搜索"></form><div id="search-result"></div><div class="search-no-result">没有找到内容！</div></div>
+
+
+
+<widget class="widget-wrapper recent post-list"><div class="widget-header dis-select"><span class="name">最近更新</span></div><div class="widget-body fs14"><a class="item title" href="/Hexblog/2026/04/16/ai-token-cost-openrelay/"><span class="title">AI 时代程序员的 Token 成本困局：把"找额度"变成工程能力</span></a><a class="item title" href="/Hexblog/2026/04/11/hermes-agent-vs-openclaw-frontend/"><span class="title">前端开发者视角：Hermes Agent 和 OpenClaw 有什么区别，怎么选</span></a><a class="item title" href="/Hexblog/2026/04/10/ai-coding-five-piece/"><span class="title">AI 编程五件套：Rules、Commands、Subagent、MCP 与 Skills，怎么真正用进项目</span></a><a class="item title" href="/Hexblog/2026/04/09/hello-world/"><span class="title">前端开发如何用好 AI Skill</span></a><a class="item title" href="/Hexblog/2025/11/15/welcome/"><span class="title">欢迎来到我的博客</span></a></div></widget>
+</div>
+
+</div></aside><div class="l_main" id="main">
+
+
+
+
+
+
+
+<div class="article banner top">
+  <div class="content">
+    <div class="top bread-nav footnote"><div class="left"><div class="flex-row" id="breadcrumb"><a class="cap breadcrumb" href="/Hexblog/Hexblog/">主页</a>
+<span class="sep"></span><a class="cap breadcrumb" href="/Hexblog/">文章</a><span class="sep"></span><a class="cap breadcrumb-link" href="/Hexblog/categories/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/">前端框架</a></div>
+<div class="flex-row" id="post-meta"><span class="text created">发布于：<time datetime="2024-05-11T03:36:00.000Z">2024-05-11</time></span></div></div></div>
+
+    <div class="bottom only-title">
+
+      <div class="text-area">
+        <h1 class="text title"><span>element-ui之dialog组件封装</span></h1>
+
+      </div>
+    </div>
+
+  </div>
+  </div><article class="md-text content"><p>在 Element UI 中，<code>el-dialog</code> 是一个非常常用的组件。将其封装为可复用组件，可以让代码更清晰、维护更方便。本文介绍一种简单的 dialog 组件封装方式。</p>
+<h2 id="组件封装"><a href="#组件封装" class="headerlink" title="组件封装"></a>组件封装</h2><p>将 dialog 封装为一个独立的 Vue 组件 <code>ResetPassword</code>：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;resetPass&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;openDialog&quot;</span>&gt;</span>修改密码<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-dialog</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:visible.sync</span>=<span class="string">&quot;DialogVisible&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:close-on-click-modal</span>=<span class="string">&quot;false&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">:destroy-on-close</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">title</span>=<span class="string">&quot;修改密码&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">width</span>=<span class="string">&quot;30%&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">append-to-body</span></span></span><br><span class="line"><span class="tag">      <span class="attr">center</span></span></span><br><span class="line"><span class="tag">      @<span class="attr">close</span>=<span class="string">&quot;resetForm(&#x27;ruleForm&#x27;)&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span>&gt;</span>this is a dialog<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">&quot;footer&quot;</span> <span class="attr">class</span>=<span class="string">&quot;dialog-footer&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;submitForm(&#x27;ruleForm&#x27;)&quot;</span>&gt;</span>提交<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">&quot;resetForm(&#x27;ruleForm&#x27;)&quot;</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">name</span>: <span class="string">&#x27;ResetPassword&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">  <span class="title function_">data</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="title class_">DialogVisible</span>: <span class="literal">false</span>,</span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">methods</span>: &#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">submitForm</span>(<span class="params">formName</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="keyword">const</span> that = <span class="variable language_">this</span></span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">$refs</span>[formName].<span class="title function_">validate</span>(<span class="function">(<span class="params">valid</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        <span class="keyword">if</span> (valid) &#123;</span></span><br><span class="line"><span class="language-javascript">          </span></span><br><span class="line"><span class="language-javascript">        &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">        </span></span><br><span class="line"><span class="language-javascript">        &#125;</span></span><br><span class="line"><span class="language-javascript">      &#125;)</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">resetForm</span>(<span class="params">formName</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">$refs</span>[formName].<span class="title function_">resetFields</span>()</span></span><br><span class="line"><span class="language-javascript">    &#125;,</span></span><br><span class="line"><span class="language-javascript">    <span class="title function_">openDialog</span>(<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">      <span class="variable language_">this</span>.<span class="property">DialogVisible</span> = <span class="literal">true</span></span></span><br><span class="line"><span class="language-javascript">    &#125;</span></span><br><span class="line"><span class="language-javascript">  &#125;</span></span><br><span class="line"><span class="language-javascript">&#125;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="组件使用"><a href="#组件使用" class="headerlink" title="组件使用"></a>组件使用</h2><p>在父组件中引入并使用封装好的 dialog 组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">reset-Password</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">import</span> <span class="title class_">ResetPassword</span> <span class="keyword">from</span> <span class="string">&#x27;../../components/dialog/resetPassword&#x27;</span></span></span><br><span class="line"><span class="language-javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">name</span>: <span class="string">&#x27;AppMain&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">  <span class="attr">components</span>: &#123;<span class="title class_">ResetPassword</span>&#125;,</span></span><br><span class="line"><span class="language-javascript">  data () &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">return</span> &#123;&#125;;</span></span><br><span class="line"><span class="language-javascript">        &#125;,</span></span><br><span class="line"><span class="language-javascript">   <span class="attr">methods</span>: &#123;&#125;,</span></span><br><span class="line"><span class="language-javascript">   &#125;;</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>通过将 <code>el-dialog</code> 封装为独立组件，可以实现：</p>
+<ul>
+<li>弹窗逻辑与业务页面解耦</li>
+<li>组件可在多个页面复用</li>
+<li>统一管理 dialog 的显示/隐藏状态和表单校验逻辑</li>
+</ul>
+</article>
+<div class="article-footer">
+    <section id="license">
+      <div class="header"><span>许可协议</span></div>
+      <div class="body"><p>本文采用 <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">署名-非商业性使用-相同方式共享 4.0 国际</a> 许可协议，转载请注明出处。</p>
+</div>
+    </section>
+
+
+</div>
+
+<div class="related-wrap" id="read-next"><section class="body"><div class="item" id="prev"><div class="note">较新文章</div><a href="/Hexblog/2025/11/15/welcome/">欢迎来到我的博客</a></div><div class="item" id="next"><div class="note">较早文章</div><a href="/Hexblog/2024/04/01/">更早的文章</a></div></section></div>
+
+
+
+
+
+
+
+
+<footer class="page-footer footnote"><hr><div class="text"><p>本站由 <a href="/about/">BugHunter</a> 搭建，基于 <a target="_blank" rel="noopener" href="https://github.com/xaoxuu/hexo-theme-stellar/tree/1.33.1">Stellar 1.33.1</a> 主题运行。<br>这里主要记录开发笔记、问题排查与技术思考，欢迎一起交流。</p>
+</div></footer>
+<div class="main-mask" onclick="sidebar.dismiss()"></div></div><aside class="l_right"><div class="widgets">
+
+
+
+<widget class="widget-wrapper toc" id="data-toc" collapse="false"><div class="widget-header dis-select"><span class="name">本文目录</span><a class="cap-action" onclick="sidebar.toggleTOC()" ><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg></a></div><div class="widget-body"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85"><span class="toc-text">组件封装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="toc-text">组件使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li></ol></div><div class="widget-footer"><a class="top" onclick="util.scrollTop()"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"><path stroke-linejoin="round" d="m9 15.5l3-3l3 3m-6-4l3-3l3 3"/><path d="M7 3.338A9.95 9.95 0 0 1 12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12c0-1.821.487-3.53 1.338-5"/></g></svg><span>回到顶部</span></a></div></widget>
+</div></aside><div class='float-panel'>
+  <button type='button' style='display:none' class='laptop-only rightbar-toggle mobile' onclick='sidebar.rightbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6h11m-11 6h11m-11 6h11M4 6h1v4m-1 0h2m0 8H4c0-1 2-2 2-3s-1-1.5-2-1"/></svg>
+  </button>
+  <button type='button' style='display:none' class='mobile-only leftbar-toggle mobile' onclick='sidebar.leftbar()'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 11c0-3.771 0-5.657 1.172-6.828C4.343 3 6.229 3 10 3h4c3.771 0 5.657 0 6.828 1.172C22 5.343 22 7.229 22 11v2c0 3.771 0 5.657-1.172 6.828C19.657 21 17.771 21 14 21h-4c-3.771 0-5.657 0-6.828-1.172C2 18.657 2 16.771 2 13z"/><path id="sep" stroke-linecap="round" d="M5.5 10h6m-5 4h4m4.5 7V3"/></g></svg>
+  </button>
+</div>
+</div><div class="scripts">
+
+
+<script type="text/javascript">
+  window.canonical = {"closeEnable":true,"closeText":"关闭提示","originalHost":null,"officialHosts":["localhost"],"encoded":""};
+  window.canonical["param"] = {"permalink":"https://cyj950730.github.io/Hexblog/2024/05/11/element-ui-dialog/","checklink":"/js/plugins/video.js"};
+  // Fix: Ensure page is at the correct top position on data load
+  if (history.scrollRestoration) {
+    history.scrollRestoration = 'auto';
+  }
+  (function() {
+    const scrollHandler = () => {
+      const wikiCover = document.querySelector('#l_cover .l_cover.wiki');
+      const startEl = document.getElementById('start');
+      if (wikiCover && startEl) {
+        window.scrollTo(0, startEl.offsetTop);
+      } else {
+        window.scrollTo(0, 0);
+      }
+    };
+    if (document.readyState !== 'loading') scrollHandler();
+    else document.addEventListener('DOMContentLoaded', scrollHandler);
+  })();
+  const ctx = {
+    date_suffix: {
+      just: `刚刚`,
+      min: `分钟前`,
+      hour: `小时前`,
+      day: `天前`,
+    },
+    root : `/Hexblog/`,
+    tag_plugins: {
+      chat: Object.assign({"api":"https://siteinfo.listentothewind.cn/api/v1"}),
+    }
+  };
+
+  // required plugins (only load if needs)
+  if (`local_search`) {
+    ctx.search = {};
+    ctx.search.service = `local_search`;
+    if (ctx.search.service == 'local_search') {
+      let service_obj = Object.assign({}, `{"field":"all","path":"/search.json","content":true,"skip_search":null,"sort":"-date"}`);
+      ctx.search[ctx.search.service] = service_obj;
+    }
+  }
+  const def = {
+    avatar: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/avatar/round/3442075.svg`,
+    cover: `https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.12/cover/76b86c0226ffd.svg`,
+    loading: `https://api.iconify.design/eos-icons:three-dots-loading.svg?color=%231cd0fd`,
+  };
+  const deps = {
+    jquery: `https://gcore.jsdelivr.net/npm/jquery@3.7/dist/jquery.min.js`,
+    marked: `https://gcore.jsdelivr.net/npm/marked@13.0/lib/marked.umd.min.js`,
+    lazyload: `/Hexblog/%5Bobject%20Object%5D`
+  };
+  window.T = {
+    dir: {
+      posts: `文章`
+    },
+    color: {
+      card: ``,
+      card_title: ``,
+      card_title_hover: ``,
+      card_subtitle: ``,
+      theme: ``,
+      link: ``,
+      text: ``,
+      bg: ``,
+      theme_in_hex: ``,
+    },
+    comment: ``,
+    scripts: ``,
+    slot: ``,
+    icp: {
+      img: ``,
+      text: ``,
+    },
+    isPost: true,
+    toc: true,
+  };
+</script>
+<script src="/Hexblog/js/main.js?v=1.33.1"></script>
+<script src="/Hexblog/js/plugins.js?v=1.33.1"></script>
+<script src="/Hexblog/js/custom.js?v=1.33.1"></script>
+
+</div>
+</body></html>
